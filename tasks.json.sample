@@ -1,0 +1,9 @@
+[
+  {
+    "projectKey": "FUU-2",
+    "projectId": 1,
+    "issueType": "Task",
+    "summary": "Example task",
+    "description": "Description of task"
+  },
+]

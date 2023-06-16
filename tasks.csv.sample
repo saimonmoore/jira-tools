@@ -1,0 +1,2 @@
+projectKey,projectId,issueType,summary,description,duedate,labels
+FUU-2,34400,Task,Example Task,This is an example task created via CSV.,2023-06-30,"blitz_test"

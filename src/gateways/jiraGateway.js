@@ -47,7 +47,7 @@ async function createTask(projectKey, projectId, issueType, summary, description
       }
     });
 
-    console.log(`Task created successfully. https://jira.xing.hh/${issue.key}`);
+    console.log(`Task created successfully. https://jira.xing.hh/browse/${issue.key}`);
   } catch (error) {
     console.error('Error creating task:', error);
   }

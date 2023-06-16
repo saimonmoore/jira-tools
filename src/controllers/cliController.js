@@ -1,11 +1,21 @@
-const { createTasksFromCsv } = require('../usecases/createTaskUseCase');
+const { createTasksFromCsv, createTasksFromJson } = require('../usecases/createTaskUseCase');
 
-// Get CSV file path from command-line arguments
-const csvFilePath = process.argv[2];
+// Get file path from command-line arguments
+const filePath = process.argv[2];
 
-if (!csvFilePath) {
-  console.error('Please provide a CSV file path as an argument.');
+if (!filePath) {
+  console.error('Please provide a file path as an argument.');
   process.exit(1);
 }
 
-createTasksFromCsv(csvFilePath);
+// Determine file extension
+const fileExtension = filePath.split('.').pop();
+
+// Call appropriate use case based on file extension
+if (fileExtension === 'csv') {
+  createTasksFromCsv(filePath);
+} else if (fileExtension === 'json') {
+  createTasksFromJson(filePath);
+} else {
+  console.error('Unsupported file extension. Please provide a CSV or JSON file.');
+}

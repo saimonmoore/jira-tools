@@ -1,6 +1,10 @@
 const { createTask } = require('../gateways/jiraGateway');
 const fs = require('fs');
 
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 // Create tasks from CSV file
 async function createTasksFromCsv(csvFilePath) {
   try {
@@ -11,6 +15,7 @@ async function createTasksFromCsv(csvFilePath) {
       const [projectKey, projectId, issueType, summary, description, duedate, labels] = task.split(',');
 
       await createTask(projectKey, projectId, issueType, summary, description, duedate, labels);
+      await delay(500);
     }
   } catch (error) {
     console.error('Error creating tasks from CSV:', error);
@@ -27,6 +32,7 @@ async function createTasksFromJson(jsonFilePath) {
       const { projectKey, projectId, issueType, summary, description, duedate, labels } = task;
 
       await createTask(projectKey, projectId, issueType, summary, description, duedate, labels);
+      await delay(500);
     }
   } catch (error) {
     console.error('Error creating tasks from JSON:', error);

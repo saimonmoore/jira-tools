@@ -1,4 +1,4 @@
-const { createTask } = require('../gateways/jiraGateway');
+const { createTask, INVESTMENT_PROFILE_LABELS } = require('../gateways/jiraGateway');
 const fs = require('fs');
 
 function delay(ms) {
@@ -31,7 +31,9 @@ async function createTasksFromJson(jsonFilePath) {
     for (const task of tasks) {
       const { projectKey, projectId, issueType, summary, description, duedate, labels } = task;
 
-      await createTask(projectKey, projectId, issueType, summary, description, duedate, labels);
+      const investmentProfile = task.investmentProfile || "NONE";
+
+      await createTask(projectKey, projectId, issueType, summary, description, duedate, labels, investmentProfile);
       await delay(500);
     }
   } catch (error) {
